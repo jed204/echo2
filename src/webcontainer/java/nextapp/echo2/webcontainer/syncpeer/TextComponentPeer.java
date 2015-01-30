@@ -290,15 +290,19 @@ implements ActionProcessor, ComponentSynchronizePeer, DomUpdateSupport, FocusSup
             ci.getUpdateManager().getClientUpdateManager().setComponentProperty(component, 
                     TextComponent.TEXT_CHANGED_PROPERTY, propertyValue);
         } else if (TextComponent.PROPERTY_HORIZONTAL_SCROLL.equals(propertyName)) {
-            Extent propertyValue = new Extent(Integer.parseInt(
-                    propertyElement.getAttribute(PropertyUpdateProcessor.PROPERTY_VALUE)));
-            ci.getUpdateManager().getClientUpdateManager().setComponentProperty(component, 
-                    TextComponent.PROPERTY_HORIZONTAL_SCROLL, propertyValue);
+            try {
+                Extent propertyValue = new Extent(Float.valueOf(
+                        propertyElement.getAttribute(PropertyUpdateProcessor.PROPERTY_VALUE)).intValue());
+                ci.getUpdateManager().getClientUpdateManager().setComponentProperty(component, 
+                        TextComponent.PROPERTY_HORIZONTAL_SCROLL, propertyValue);
+            } catch (Exception e) {}
         } else if (TextComponent.PROPERTY_VERTICAL_SCROLL.equals(propertyName)) {
-            Extent propertyValue = new Extent(Integer.parseInt(
-                    propertyElement.getAttribute(PropertyUpdateProcessor.PROPERTY_VALUE)));
-            ci.getUpdateManager().getClientUpdateManager().setComponentProperty(component, 
-                    TextComponent.PROPERTY_VERTICAL_SCROLL, propertyValue);
+            try {
+                Extent propertyValue = new Extent(Float.valueOf(
+                        propertyElement.getAttribute(PropertyUpdateProcessor.PROPERTY_VALUE)).intValue());
+                ci.getUpdateManager().getClientUpdateManager().setComponentProperty(component, 
+                        TextComponent.PROPERTY_VERTICAL_SCROLL, propertyValue);
+            } catch (Exception e) {}
         }
     }
 
